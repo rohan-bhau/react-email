@@ -129,9 +129,17 @@ export function parsePadding(properties: PaddingProperties) {
   }
 
   return {
-    paddingTop: paddingTop ? convertToPx(paddingTop) : undefined,
-    paddingRight: paddingRight ? convertToPx(paddingRight) : undefined,
-    paddingBottom: paddingBottom ? convertToPx(paddingBottom) : undefined,
-    paddingLeft: paddingLeft ? convertToPx(paddingLeft) : undefined,
+    paddingTop:
+      paddingTop || paddingTop === 0 ? convertToPx(paddingTop) : undefined,
+    paddingRight:
+      paddingRight || paddingRight === 0
+        ? convertToPx(paddingRight)
+        : undefined,
+    paddingBottom:
+      paddingBottom || paddingBottom === 0
+        ? convertToPx(paddingBottom)
+        : undefined,
+    paddingLeft:
+      paddingLeft || paddingLeft === 0 ? convertToPx(paddingLeft) : undefined,
   };
 }

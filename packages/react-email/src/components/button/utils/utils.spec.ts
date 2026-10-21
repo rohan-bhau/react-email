@@ -109,6 +109,63 @@ describe('parsePadding', () => {
     });
   });
 
+  it('should preserve zero padding with shorthand', () => {
+    const result = parsePadding({
+      padding: '12px 20px',
+      paddingTop: 0,
+      paddingBottom: 0,
+    });
+
+    expect(result).toEqual({
+      paddingTop: 0,
+      paddingRight: 20,
+      paddingBottom: 0,
+      paddingLeft: 20,
+    });
+  });
+
+  it('should preserve zero for individual padding properties', () => {
+    const result = parsePadding({
+      paddingTop: 0,
+      paddingRight: 0,
+      paddingBottom: 0,
+      paddingLeft: 0,
+    });
+
+    expect(result).toEqual({
+      paddingTop: 0,
+      paddingRight: 0,
+      paddingBottom: 0,
+      paddingLeft: 0,
+    });
+  });
+
+  it('should preserve zero horizontal padding with shorthand', () => {
+    const result = parsePadding({
+      padding: '12px 20px',
+      paddingRight: 0,
+      paddingLeft: 0,
+    });
+
+    expect(result).toEqual({
+      paddingTop: 12,
+      paddingRight: 0,
+      paddingBottom: 12,
+      paddingLeft: 0,
+    });
+  });
+
+  it('should preserve zero padding shorthand', () => {
+    const result = parsePadding({ padding: 0 });
+
+    expect(result).toEqual({
+      paddingTop: 0,
+      paddingRight: 0,
+      paddingBottom: 0,
+      paddingLeft: 0,
+    });
+  });
+
   it('overrides general padding value with specific padding value if specified', () => {
     const result = parsePadding({ padding: 10, paddingRight: '1em' });
     expect(result).toEqual({
